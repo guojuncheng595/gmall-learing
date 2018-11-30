@@ -1,1 +1,1 @@
-# gmall_learing
+# gmall
