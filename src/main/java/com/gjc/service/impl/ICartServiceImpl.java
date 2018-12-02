@@ -14,6 +14,7 @@ import com.gjc.vo.CartProductVo;
 import com.gjc.vo.CartVo;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.apache.commons.collections.CollectionUtils;
@@ -22,6 +23,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Service("iCartService")
+@Slf4j
 public class ICartServiceImpl implements ICartService {
 
     @Autowired

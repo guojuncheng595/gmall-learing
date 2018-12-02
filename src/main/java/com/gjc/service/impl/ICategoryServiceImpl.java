@@ -6,6 +6,7 @@ import com.gjc.pojo.Category;
 import com.gjc.service.ICategoryService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,10 @@ import java.util.List;
 import java.util.Set;
 
 @Service("iCategoryService")
+@Slf4j
 public class ICategoryServiceImpl implements ICategoryService {
 
-    private Logger logger = LoggerFactory.getLogger(ICategoryServiceImpl.class);
+//    private Logger logger = LoggerFactory.getLogger(ICategoryServiceImpl.class);
 
     @Autowired
     private CategoryMapper categoryMapper;
@@ -75,7 +77,7 @@ public class ICategoryServiceImpl implements ICategoryService {
     public ServerResponse<List<Category>> getChildrenParallelCategory(Integer categoryId) {
         List<Category> categoryList = categoryMapper.selectCategoryChildrenByParentId(categoryId);
         if (CollectionUtils.isEmpty(categoryList)) {
-            logger.info("未找到当前分类的子分类");
+            log.info("未找到当前分类的子分类");
         }
         return ServerResponse.createBySuccess(categoryList);
     }
