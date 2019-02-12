@@ -199,6 +199,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
+
   <select id="selectByUserIdAndOrderNo" resultMap="BaseResultMap" parameterType="map">
     SELECT
     <include refid="Base_Column_List"></include>
@@ -220,7 +221,7 @@
 
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
     SELECT
-    <include refid="Base_Column_List"/>
+      <include refid="Base_Column_List"/>
     from gmall_order
     where user_id = #{userId}
     order by create_time desc
@@ -234,6 +235,33 @@
     from gmall_order
     ORDER BY  create_time desc
   </select>
+
+  <select id="selectOrderStatusByCreateTime" resultMap="BaseResultMap" parameterType="map">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from gmall_order
+    where status = #{status}
+    <![CDATA[
+    and create_time <= #{date}
+    ]]>
+    order by create_time desc
+  </select>
+
+  <update id="closeOrderByOrderId" parameterType="int" >
+    UPDATE gmall_order
+    SET status = 0
+    where id = #{id}
+  </update>
+
+
+
+
+
+
+
+
+
+
 
 
 </mapper>

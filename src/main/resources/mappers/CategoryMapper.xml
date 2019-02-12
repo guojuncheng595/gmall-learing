@@ -121,7 +121,24 @@
     select
     <include refid="Base_Column_List"/>
     from gmall_category
-    where parent_id = #{parent_id}
-
+    where parent_id = #{parentId}
   </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

@@ -178,8 +178,8 @@
   </update>
 
   <delete id="deleteByShippingIdUserId" parameterType="map">
-    delete from gmall_shipping
-    where id = #{shipping}
+    DELETE  FROM  gmall_shipping
+    where id = #{shippingId}
     and user_id = #{userId}
   </delete>
 
@@ -200,19 +200,40 @@
     and user_id = #{userId,jdbcType=INTEGER}
   </update>
 
-  <select id="selectByShippingIdUserId" parameterType="map" resultMap="BaseResultMap">
-    select 
+
+  <select id="selectByShippingIdUserId" resultMap="BaseResultMap" parameterType="map">
+    SELECT
     <include refid="Base_Column_List"/>
     from gmall_shipping
     where id = #{shippingId}
     and user_id = #{userId}
   </select>
 
+
   <select id="selectByUserId" resultMap="BaseResultMap" parameterType="map">
-    select
+    SELECT
     <include refid="Base_Column_List"/>
     from gmall_shipping
     where user_id = #{userId}
   </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </mapper>

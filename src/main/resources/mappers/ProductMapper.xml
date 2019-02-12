@@ -115,10 +115,10 @@
         #{status,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
@@ -177,16 +177,17 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
 
-  <select id="selectList" resultMap="BaseResultMap">
-    select
+
+  <select id="selectList" resultMap="BaseResultMap" >
+    SELECT
     <include refid="Base_Column_List"/>
     from gmall_product
-    order by id asc
+    ORDER BY id asc
   </select>
 
 
   <select id="selectByNameAndProductId" resultMap="BaseResultMap" parameterType="map">
-    select
+    SELECT
     <include refid="Base_Column_List"/>
     from gmall_product
     <where>
@@ -198,21 +199,31 @@
       </if>
     </where>
   </select>
-
+  
   <select id="selectByNameAndCategoryIds" resultMap="BaseResultMap" parameterType="map">
-    select 
-    <include refid="Base_Column_List"/>
-      from gmall_product
+    SELECT
+    <include refid="Base_Column_List"></include>
+    from gmall_product
     where status = 1
     <if test="productName != null">
-      and name = #{productName}
+      and name like #{productName}
     </if>
-    <if test="categoryIdList != null">
-      and category_id in 
-        <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
-            #{item}
-        </foreach>
+    <if test="categoryIdList != null" >
+      and category_id in
+      <foreach item="item" index="index" open="(" separator="," close=")" collection="categoryIdList">
+        #{item}
+      </foreach>
     </if>
   </select>
+
+  <select id="selectStockByProductId" resultType="int" parameterType="java.lang.Integer">
+    select
+    stock
+    from gmall_product
+    where id = #{id}
+    for update
+
+  </select>
+
 
 </mapper>

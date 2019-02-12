@@ -3,6 +3,7 @@
 #package file
 *.war
 *.ear
+*.zip
 
 #kdiff3 ignore
 *.orig
