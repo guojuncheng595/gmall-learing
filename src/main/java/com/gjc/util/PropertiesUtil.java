@@ -44,6 +44,8 @@ public class PropertiesUtil {
         return value.trim();
     }
 
-
+    //getboolean
+    //getboolean  带默认值的
+    //
 
 }
